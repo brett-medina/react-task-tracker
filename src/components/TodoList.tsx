@@ -5,14 +5,17 @@ import { filter } from 'lodash';
 
 const TodoList = ({ todos, setTodos }: Props) => {
 	const deleteTask = (e: React.SyntheticEvent) => {
-		const selectedId = +e.currentTarget.getAttribute('data-index')!;
 		setTodos(
 			filter(todos, (todo: Todo) => {
-				return todo.id !== selectedId
+				return todo.id !== selectedTask(e)
 			})
 		)
 	}
 
+	const selectedTask = (e: React.SyntheticEvent) => {
+		return +e.currentTarget.getAttribute('data-index')!;
+	}
+	
 	return (
 		<div>
 			{

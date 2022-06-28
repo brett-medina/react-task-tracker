@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import "./App.css";
 import InputField from './components/InputField';
+import { Todo } from './models/todo';
 
 const user = {
   name: 'Tom Cook',
@@ -30,7 +31,23 @@ function classNames(...classes: any[]) {
 
 const App = () => {
 
-  const [todo, setTodo] = useState<string>("")
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+  
+  const addToList = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (todo) {
+      setTodos([...todos, {
+        id: Date.now(),
+        todo: todo,
+        isDone: false
+      }]);
+      setTodo('');
+    }
+  };
+
+  console.log(todos);
 
   return (
     <>
@@ -198,7 +215,11 @@ const App = () => {
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
-            <InputField input={todo} setInput={setTodo}></InputField>
+            <InputField
+              input={todo}
+              setInput={setTodo}
+              onSubmit={addToList}
+            />
             {/* /End replace */}
           </div>
         </main>

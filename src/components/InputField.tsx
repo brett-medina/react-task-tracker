@@ -3,12 +3,13 @@ import React from 'react'
 interface Props {
 	input: string;
 	setInput: React.Dispatch<React.SetStateAction<string>>;
+	onSubmit: (e: React.FormEvent) => void;
 }
 
-const InputField = ({ input, setInput }: Props) => {
+const InputField = ({ input, setInput , onSubmit}: Props) => {
 
   return ( 
-		<form action="#" method="POST">
+		<form action="#" method="POST" onSubmit={onSubmit}>
 			<div className="flex justify-center items-center">
 				<div className="col-span-6 sm:col-span-4">
 					<input

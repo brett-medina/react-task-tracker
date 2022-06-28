@@ -1,8 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import "./App.css";
+import InputField from './components/InputField';
 
 const user = {
   name: 'Tom Cook',
@@ -28,6 +29,9 @@ function classNames(...classes: any[]) {
 }
 
 const App = () => {
+
+  const [todo, setTodo] = useState<string>("")
+
   return (
     <>
       {/*
@@ -194,9 +198,7 @@ const App = () => {
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-            </div>
+            <InputField input={todo} setInput={setTodo}></InputField>
             {/* /End replace */}
           </div>
         </main>

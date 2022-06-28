@@ -4,7 +4,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import "./App.css";
 import InputField from './components/InputField';
-import { Todo } from './models/todo';
+import Todo from './models/todo';
+import TodoList from './components/TodoList';
 
 const user = {
   name: 'Tom Cook',
@@ -46,8 +47,6 @@ const App = () => {
       setTodo('');
     }
   };
-
-  console.log(todos);
 
   return (
     <>
@@ -219,6 +218,10 @@ const App = () => {
               input={todo}
               setInput={setTodo}
               onSubmit={addToList}
+            />
+            <TodoList
+              todos={todos}
+              setTodos={setTodos}
             />
             {/* /End replace */}
           </div>
